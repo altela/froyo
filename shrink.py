@@ -1,44 +1,23 @@
-import glob 
+import os
+from rembg import remove
 from PIL import Image
 
-folder_gambar = glob.glob("/Users/pramardhika/Desktop/hasil_foto/*.jpg")
+input_path = 'images/'
+output_path = 'result/'
 counter = 1
-for gambar in folder_gambar:
 
-	# with open(gambar, 'rb') as file:
-	gbr = Image.open(gambar)
+for images in os.listdir(input_path):
+    input = Image.open(str(input_path+images))
+    output = remove(input)
+    # output.save(output_path)
+    basewidth = 400
+    wpercent = (basewidth/float(output.size[0]))
+    hsize = int((float(output.size[1])*float(wpercent)))
+    gbr = output.resize((basewidth,hsize), Image.ANTIALIAS)
 
-	basewidth = 400
-	wpercent = (basewidth/float(gbr.size[0]))
-	hsize = int((float(gbr.size[1])*float(wpercent)))
-	gbr = gbr.resize((basewidth,hsize), Image.ANTIALIAS)
+    background = Image.open("twibbon.png")
+    background.paste(gbr, ((background.width - gbr.width) // 2, (background.height - gbr.height) // 2))
+    background.save(output_path + str(counter) + ".png",optimize=True,quality=95)
 
-	gbr.save("/Users/pramardhika/Desktop/hasil_foto/"+str(counter)+".png",optimize=True,quality=95)
-	counter += 1
-
-
-
-	# counter = 1
-	# basewidth = 400
-	# wpercent = (basewidth/float(gambar.size[0]))
-	# hsize = int((float(gambar.size[1])*float(wpercent)))
-	# gambar = gambar.resize((basewidth,hsize), Image.ANTIALIAS)
-
-	# gambar.save("/Users/pramardhika/Desktop/hasil_foto/hasil.png",optimize=True,quality=95)
-
-	# counter += 1
-
-
-
-
-
-
-# from PIL import Image
-
-# basewidth = 400
-# foo = Image.open("/Users/pramardhika/Desktop/hasil_foto/1659684676196.png")
-# wpercent = (basewidth/float(foo.size[0]))
-# hsize = int((float(foo.size[1])*float(wpercent)))
-# foo = foo.resize((basewidth,hsize), Image.ANTIALIAS)
-
-# foo.save("/Users/pramardhika/Desktop/hasil_foto/hasil.png",optimize=True,quality=95)
+    print(f"Gambar {counter} berhasil diproses")
+    counter += 1
