@@ -10,4 +10,4 @@ python3 -m froyo.py
 ```
 
 This will combine your image inside `images` folder with `twibbon.png`, which the result will be saved into `result` folder.
-This script support multiple images, just put it inside `images folder`
+This script support multiple images, just put it inside `images` folder
