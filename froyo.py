@@ -1,14 +1,22 @@
 import os
 from rembg import remove
 from PIL import Image
+from pillow_heif import register_heif_opener
 
 input_path = 'images/'
 output_path = 'result/'
 counter = 1
 
 for images in os.listdir(input_path):
-    input = Image.open(str(input_path+images))
-    output = remove(input)
+    check_extension = os.path.splitext(images)
+    file_extension = check_extension[1]
+
+    if file_extension == ".HEIC":
+        register_heif_opener()
+        input = Image.open(str(input_path+images))
+    else:
+        input = Image.open(str(input_path+images))
+    output = remove(input)  
     # output.save(output_path)
     basewidth = 400
     wpercent = (basewidth/float(output.size[0]))
