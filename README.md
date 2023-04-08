@@ -10,7 +10,7 @@ python3 -m froyo.py
 ```
 
 or, if you are using windows you can edit the `run_froyo.bat` file, you need to edit it and identify where your python folder located.
-Just follow the instruction inisde that file.
+Just follow the instruction inside that file.
 
 This will combine your image inside `images` folder with `twibbon.png`, which the result will be saved into `result` folder.
 This script support multiple images, just put it inside `images` folder
