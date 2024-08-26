@@ -1,0 +1,8 @@
+# Ignore all folders that contain "images" in their names
+**/*images*/
+
+# Ignore all folders that contain "result" in their names
+**/*result*/
+
+.DS_Store
+__pycache__/
